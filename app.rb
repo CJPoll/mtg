@@ -16,6 +16,6 @@ post '/cards' do
 		webhook_url: "https://hooks.slack.com/services/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",
 		channel: '#testing-slashes'
 	)
-	client.notify(response)
+	client.notify(response.body)
 
 end
