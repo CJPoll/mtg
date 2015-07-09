@@ -1,5 +1,6 @@
 require 'sinatra'
 require 'slack-notify'
+require 'firebase'
 
 get '/' do
 	return "Hello world"
