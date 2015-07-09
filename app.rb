@@ -8,7 +8,7 @@ end
 
 post '/cards' do
 	card_name = params[:text]
-	channel = params[:channel]
+	channel = params[:channel_name]
 
 	base_uri = "https://magictgdeckpricer.firebaseio.com/allCards/"
 	firebase = Firebase::Client.new base_uri
