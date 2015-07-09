@@ -1,6 +1,10 @@
 require 'sinatra'
 require 'slack-notify'
 
+get '/' do
+	return "Hello world"
+end
+
 post '/cards' do
 	card_name = params[:text]
 
