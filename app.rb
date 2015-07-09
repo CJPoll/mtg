@@ -14,6 +14,7 @@ post '/cards' do
 	response = firebase.get "/allCards/#{ card_name }.json"
 	client = SlackNotify::Client.new(
 		webhook_url: "https://hooks.slack.com/services/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",
+		channel: '#testing-slashes'
 	)
 	client.notify(response)
 
