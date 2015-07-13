@@ -24,7 +24,7 @@ post '/cards' do
 		webhook_url: 'https://hooks.slack.com/services/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',
 		channel: '#testing-slashes'
 	)
-	client.notify( "Channel: #{ channel }\nSet Data: #{ set_data }\nCard Data: #{ card_data }" )
+	client.notify( "Channel: #{ channel }\nSet Data: #{ set_data.body }\nCard Data: #{ card_data.body }" )
 end
 
 def get_card_data( card_name )
