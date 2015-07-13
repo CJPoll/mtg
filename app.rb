@@ -13,17 +13,17 @@ post '/cards' do
 	card_data = get_card_data(card_name)
 	set_data = get_set_data( card_name )
 
-	set_uri = 'https://magictgdeckpricer.firebaseio.com/setInfoX/'
-	firebase = Firebase::Client.new set_uri
-	encodedSet = URI::encode(set)
-	setBaseResponse = firebase.get(encodedSet)
-	code = setBaseResponse.body['code']
+#	set_uri = 'https://magictgdeckpricer.firebaseio.com/setInfoX/'
+#	firebase = Firebase::Client.new set_uri
+#	encodedSet = URI::encode(set)
+#	setBaseResponse = firebase.get(encodedSet)
+#	code = setBaseResponse.body['code']
 
 
 	client = SlackNotify::Client.new(
 		webhook_url: 'https://hooks.slack.com/services/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'
 	)
-	client.notify( "Channel: #{channel}\nSet Data: #{ setData }" )
+	client.notify( "Channel: #{channel}\nSet Data: #{ setData }\nCard Data: #{ card_data }" )
 end
 
 def get_card_data( card_name )
