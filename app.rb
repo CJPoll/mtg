@@ -21,7 +21,7 @@ post '/cards' do
 	uri = "http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=#{mId}&type=card"
 
 	client = SlackNotify::Client.new(
-		webhook_url: "https://hooks.slack.com/services/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",
+		webhook_url: "https://hooks.slack.com/services/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",
 		username: "GathererBot",
 		channel: "##{channel}"
 	)
