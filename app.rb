@@ -33,5 +33,5 @@ post '/cards' do
 		username: "GathererBot",
 		channel: "##{channel}"
 	)
-	client.notify("Channel: #{channel}\n #{uri} #{team}")
+	client.notify("Channel: #{channel}\n #{uri}")
 end
