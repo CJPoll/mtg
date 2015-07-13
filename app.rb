@@ -1,4 +1,4 @@
-require 'sinatra'
+requir 'sinatra'
 require 'slack-notify'
 require 'firebase'
 
@@ -36,7 +36,7 @@ def get_set_data( card_name )
 	firebase.get( set_path, { 
 		'orderBy' => 'name',
 		'startAt' => card_name,
-		endAt => card_name,
+		'endAt' => card_name,
 		'limitToFirst' => 1 
 	})
 end
