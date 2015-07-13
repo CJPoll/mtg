@@ -6,3 +6,4 @@ source "https://rubygems.org"
 gem 'sinatra'
 gem 'firebase'
 gem 'slack-notify'
+gem 'byebug'
