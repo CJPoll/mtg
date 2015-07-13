@@ -22,8 +22,8 @@ post '/cards' do
 
 	client = SlackNotify::Client.new(
 		webhook_url: "https://hooks.slack.com/services/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",
-
+		username: "GathererBot",
 		channel: "##{channel}"
 	)
-	client.notify("Channel: #{channel}\n#{card_name}: #{uri}")
+	client.notify("Channel: #{channel}\n #{uri}")
 end
