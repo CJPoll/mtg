@@ -11,9 +11,6 @@ post '/cards' do
 	channel = params[:channel_name]
 	team = params[:team_id]
 	client = ""
-	case team
-		when "T0001" 
-			client = 
 	base_uri = "https://magictgdeckpricer.firebaseio.com/MultiverseTable/#{ card_name }/ids"
 
 	encode = URI::encode(base_uri)
