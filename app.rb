@@ -23,7 +23,7 @@ post '/cards' do
 	puts encode 
 	firebase = Firebase::Client.new encode
 	response = firebase.get("","")
-	randomSet = 1 + rand(response.body.keys.length)
+	randomSet = rand(response.body.keys.length)
 	mId = response.body[response.body.keys[randomSet]]
 	uri = "http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=#{mId}&type=card"
 	puts uri
