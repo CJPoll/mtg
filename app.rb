@@ -16,6 +16,7 @@ post '/cards' do
 			client = "T07AGCZNZ/B07HDETK9/cWvG3OEEYv2SXLNepiZUEcTZ"
 		when "T02FJ886H"
 			client = "T02FJ886H/B07FUFG9J/SdAyVpMjNGUn1XGX7ooPrdeI"
+		end
 	base_uri = "https://magictgdeckpricer.firebaseio.com/MultiverseTable/#{ card_name }/ids"
 
 	encode = URI::encode(base_uri)
