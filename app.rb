@@ -1,4 +1,4 @@
-require 'sinatra'
+requir 'sinatra'
 require 'slack-notify'
 require 'firebase'
 
