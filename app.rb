@@ -34,12 +34,12 @@ end
 
 def get_set_data( card_name )
 	set_path = 'setInfoX/'
-	firebase.get( set_path, { 
+	firebase.get( set_path,
 		'orderBy' => 'name',
 		'startAt' => card_name,
 		'endAt' => card_name,
 		'limitToFirst' => 1 
-	})
+	)
 end
 
 def firebase
