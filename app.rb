@@ -11,6 +11,11 @@ post '/cards' do
 	channel = params[:channel_name]
 	team = params[:team_id]
 	client = ""
+	case team
+		when "T07AGCZNZ" 
+			client = "T07AGCZNZ/B07HDETK9/cWvG3OEEYv2SXLNepiZUEcTZ"
+		when "T02FJ886H"
+			client = "T02FJ886H/B07FUFG9J/SdAyVpMjNGUn1XGX7ooPrdeI"
 	base_uri = "https://magictgdeckpricer.firebaseio.com/MultiverseTable/#{ card_name }/ids"
 
 	encode = URI::encode(base_uri)
@@ -23,7 +28,7 @@ post '/cards' do
 	puts uri
 
 	client = SlackNotify::Client.new(
-		webhook_url: "https://hooks.slack.com/services/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",
+		webhook_url: "https://hooks.slack.com/services/#{client}",
 		username: "GathererBot",
 		channel: "##{channel}"
 	)
