@@ -23,7 +23,7 @@ post '/cards' do
 	client = SlackNotify::Client.new(
 		webhook_url: 'https://hooks.slack.com/services/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'
 	)
-	client.notify( "Channel: #{channel}\nSet Data: #{ setData }\nCard Data: #{ card_data }" )
+	client.notify( "Channel: #{ channel }\nSet Data: #{ set_data }\nCard Data: #{ card_data }" )
 end
 
 def get_card_data( card_name )
