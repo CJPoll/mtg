@@ -23,15 +23,20 @@ post '/cards' do
 	puts encode 
 	firebase = Firebase::Client.new encode
 	response = firebase.get("","")
-	randomSet = rand(response.body.keys.length)
-	mId = response.body[response.body.keys[randomSet]]
-	uri = "http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=#{mId}&type=card"
-	puts uri
+	if response.body
+		randomSet = rand(response.body.keys.length)
+		mId = response.body[response.body.keys[randomSet]]
+		uri = "http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=#{mId}&type=card"
+		puts uri
 
-	client = SlackNotify::Client.new(
-		webhook_url: "https://hooks.slack.com/services/#{client}",
-		username: "GathererBot",
-		channel: "##{channel}"
-	)
-	client.notify("Channel: #{channel}\n #{uri}")
+		client = SlackNotify::Client.new(
+			webhook_url: "https://hooks.slack.com/services/#{client}",
+			channel: "##{channel}"
+			username: "GathererBot"
+
+		)
+		client.notify("Channel: #{channel}\n #{uri}")
+	else
+		return "Invalid or Mispelled Card Name"
+	end	
 end
