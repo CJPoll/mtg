@@ -45,8 +45,8 @@ post '/cards' do
 	end
 end
 
-def randomCard(){
-	
+def randomCard()
+
 	randomNumber = rand(14418)
 	base_uri = "https://magictgdeckpricer.firebaseio.com/MultiverseTable/"
 	firebase = Firebase::Client.new base_uri
