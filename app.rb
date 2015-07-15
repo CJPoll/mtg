@@ -1,7 +1,6 @@
 require 'sinatra'
 require 'slack-notify'
 require 'firebase'
-require 'unicode'
 
 get '/' do
 	return "Hello world"
