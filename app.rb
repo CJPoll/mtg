@@ -53,6 +53,7 @@ def randomCard()
 		response = firebase.get("","")
 		rId = response.body[response.body.keys[randomSet]]
 		base_uri = "https://magictgdeckpricer.firebaseio.com/MultiverseTable/#{rId}/ids"
+		puts base_uri
 		base_uri = URI::encode(base_uri)
 		firebase = Firebase::Client.new base_uri
 		response = firebase.get("","")
