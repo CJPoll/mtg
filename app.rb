@@ -11,36 +11,64 @@ post '/cards' do
 	channel = params[:channel_name]
 	team = params[:team_id]
 	client = ""
-	card_name = CapitalizeWords(card_name)
 	case team
-		when "T07AGCZNZ" 
-			client = "T07AGCZNZ/B07HDETK9/cWvG3OEEYv2SXLNepiZUEcTZ"
-		when "T02FJ886H"
-			client = "T02FJ886H/B07FUFG9J/SdAyVpMjNGUn1XGX7ooPrdeI"
-		end
-	base_uri = "https://magictgdeckpricer.firebaseio.com/MultiverseTable/#{ card_name }/ids"
+			when "T07AGCZNZ" 
+				client = "T07AGCZNZ/B07HDETK9/cWvG3OEEYv2SXLNepiZUEcTZ"
+			when "T02FJ886H"
+				client = "T02FJ886H/B07FUFG9J/SdAyVpMjNGUn1XGX7ooPrdeI"
+			end
+	if card_name == "random" 
+		randomCard()
+	else
+		card_name = CapitalizeWords(card_name)
+		base_uri = "https://magictgdeckpricer.firebaseio.com/MultiverseTable/#{ card_name }/ids"
+		encode = URI::encode(base_uri)
+		puts encode 
+		firebase = Firebase::Client.new encode
+		response = firebase.get("","")
+		if response.body
+			randomSet = rand(response.body.keys.length)
+			mId = response.body[response.body.keys[randomSet]]
+			uri = "http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=#{mId}&type=card"
+			puts uri
 
-	encode = URI::encode(base_uri)
-	puts encode 
-	firebase = Firebase::Client.new encode
-	response = firebase.get("","")
-	if response.body
+			client = SlackNotify::Client.new(
+				webhook_url: "https://hooks.slack.com/services/#{client}",
+				channel: "##{channel}",
+				username: "GathererBot"
+
+			)
+			client.notify("Channel: #{channel}\n #{uri}")
+		else
+			return "Invalid or Mispelled Card Name"
+		end	
+	end
+end
+
+def randomCard(){
+	randomNumber = rand(14418)
+
+	base_uri = "https://magictgdeckpricer.firebaseio.com/MultiverseTable/"
+	firebase = Firebase::Client.new base_uri
+		response = firebase.get("","")
+		rId = response.body[response.body.keys[randomSet]]
+		base_uri = "https://magictgdeckpricer.firebaseio.com/MultiverseTable/#{rId}/ids"
+		base_uri = URI::encode(base_uri)
+		firebase = Firebase::Client.new base_uri
+		response = firebase.get("","")
 		randomSet = rand(response.body.keys.length)
 		mId = response.body[response.body.keys[randomSet]]
 		uri = "http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=#{mId}&type=card"
-		puts uri
-
 		client = SlackNotify::Client.new(
-			webhook_url: "https://hooks.slack.com/services/#{client}",
-			channel: "##{channel}",
-			username: "GathererBot"
+				webhook_url: "https://hooks.slack.com/services/#{client}",
+				channel: "##{channel}",
+				username: "GathererBot"
 
-		)
-		client.notify("Channel: #{channel}\n #{uri}")
-	else
-		return "Invalid or Mispelled Card Name"
-	end	
+			)
+			client.notify("Channel: #{channel}\n #{uri}")
+	
 end
+
 
 
 def CapitalizeWords(string)
