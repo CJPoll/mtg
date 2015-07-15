@@ -1,6 +1,7 @@
 require 'sinatra'
 require 'slack-notify'
 require 'firebase'
+require 'unicode'
 
 get '/' do
 	return "Hello world"
@@ -11,6 +12,7 @@ post '/cards' do
 	channel = params[:channel_name]
 	team = params[:team_id]
 	client = ""
+	card_name = CapitalizeWords(card_name)
 	case team
 		when "T07AGCZNZ" 
 			client = "T07AGCZNZ/B07HDETK9/cWvG3OEEYv2SXLNepiZUEcTZ"
@@ -39,4 +41,12 @@ post '/cards' do
 	else
 		return "Invalid or Mispelled Card Name"
 	end	
+end
+
+
+def CapitalizeWords(string)
+	string = string.split.map(&:capitalize).join(' ')
+	string.sub! "Of The","of the"
+	puts string
+	return string
 end
