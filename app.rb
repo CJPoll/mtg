@@ -45,7 +45,7 @@ post '/cards' do
 	end
 end
 
-def randomCard()
+def randomCard(channel,client)
 
 	randomNumber = rand(14418)
 	base_uri = "https://magictgdeckpricer.firebaseio.com/MultiverseTable/"
